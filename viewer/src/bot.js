@@ -105,6 +105,7 @@ async function fetchPlaylistUrl({ channel, token, signature, agent }) {
 		}
 	);
 	const playlist = await req.text();
+	console.log('PLAYLIST:', playlist);
 	const part = playlist;
 	return part.slice(part.indexOf("https://"));
 }
