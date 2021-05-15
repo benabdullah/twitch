@@ -229,14 +229,10 @@ var proxylessIp;
 
 async function addThread(agent) {
 	const id = threadIds++;
-
-	threads[id] = true;
-
 	// if (!agent) agent = (await getTorProxies(1, torI++))[0];
 
 	setTimeout(async () => {
 		while (true) {
-			if (threads[id] == false) return;
 			try {
 				const ip = await (await fetch("https://api.my-ip.io/ip", { agent })).text();
 				if (ip === proxylessIp) {
