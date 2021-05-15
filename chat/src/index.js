@@ -53,6 +53,7 @@ async function main() {
 	const users = fs.readFileSync(path.join(__dirname, "users.txt"), { encoding: "utf8" }).split("\n");
 	for (const user of users) {
 		const [username, token] = user.split(" ");
+		console.log('USERNAME', username, 'TOKEN', token);
 		promises.push(chat({ username, token }).caught());
 		await sleep(100);
 	}

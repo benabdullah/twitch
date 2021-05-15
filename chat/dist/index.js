@@ -119,6 +119,7 @@ function main() {
                     if (!(_i < users_1.length)) return [3 /*break*/, 4];
                     user = users_1[_i];
                     _a = user.split(" "), username = _a[0], token = _a[1];
+                    console.log('USERNAME', username, 'TOKEN', token);
                     promises.push(chat({ username: username, token: token }).caught());
                     return [4 /*yield*/, sleep(100)];
                 case 2:

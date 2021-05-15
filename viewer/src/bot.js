@@ -366,6 +366,8 @@ async function sendViews({ playlistUrl, agent, i, persist }) {
 	const playlist = await fetchPlaylist({ playlist: playlistUrl, agent });
 	const fragmentUrl = getFragmentUrl(playlist);
 	if (!fragmentUrl) console.log({ playlist, playlistUrl });
+
+	console.log('FRAGMENT URL', fragmentUrl);
 	await fetch(fragmentUrl, {
 		method: "HEAD",
 		agent,
