@@ -92,8 +92,9 @@ export async function getTokenSignature({ channel, cookie, agent }) {
 
 async function fetchPlaylistUrl({ channel, token, signature, agent }) {
 	const rand = Math.floor(9999999 * Math.random());
+	console.log('TOKEN !', token);
 	const req = await fetch(
-		`https://usher.ttvnw.net/api/channel/hls/${channel}.m3u8?allow_source=true&p=2427365&fast_bread=true&p=${rand}&play_session_id=${getRandomId()}&player_backend=mediaplayer&playlist_include_framerate=true&reassignments_supported=true&sig=${signature}&supported_codecs=avc1&token=${token}&cdm=wv&player_version=1.3.0`,
+		`https://usher.ttvnw.net/api/channel/hls/${channel}.m3u8?allow_source=true&fast_bread=true&p=${rand}&play_session_id=${getRandomId()}&player_backend=mediaplayer&playlist_include_framerate=true&reassignments_supported=true&sig=${signature}&supported_codecs=avc1&token=${token}&cdm=wv&player_version=1.3.0`,
 		{
 			agent,
 			timeout,
