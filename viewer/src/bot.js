@@ -38,7 +38,7 @@ process.on("uncaughtException", console.error);
 function getRandomId() {
 	return "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".replace(/[xy]/g, function (e) {
 		var t = (16 * Math.random()) | 0;
-		return (("x" === e ? t : (3 & t) | 8).toString(16)).toLowerCase();
+		return (("x" === e ? t : (3 & t) | 8).toString(16));
 	});
 }
 
