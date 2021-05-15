@@ -176,8 +176,10 @@ async function getTorProxies(count, offset = 0) {
 		const geoip6 = path.join(__dirname, "tor", "geoip6");
 		const tor = spawn(
 			torpath,
-			`--SocksPort ${port} --DataDirectory ${dataDir} --GeoIPFile ${geoip} --GeoIPv6File ${geoip6}`.split(" ")
+			`--SocksPort ${port} --DataDirectory ${dataDir}`.split(" ")
 		);
+
+		// --GeoIPFile ${geoip} --GeoIPv6File ${geoip6}
 
 		tor.on("exit", () => console.log("[Tor] killed: " + counter));
 		tor.on("error", (error) => console.error("[Tor] err", error.toString()));
@@ -242,7 +244,7 @@ async function addThread(agent) {
 					throw "[Proxy] transparent: skipping";
 				}
 
-				await view({ channel: ChannelName, agent, persist: true, i: id });
+				await view({ channel: ChannelName, agent, persist: false, i: id });
 			} catch (error) {
 				console.error(error);
 			}
