@@ -10,6 +10,7 @@ import kill from "tree-kill";
 import readline from "readline";
 import randomUserAgent from "random-useragent";
 
+const proxyType = 'tor';
 const __dirname = path.resolve(path.dirname(""));
 var torpath = "tor";
 if (process.platform == "win32") {
@@ -209,7 +210,7 @@ async function getTorProxies(count, offset = 0) {
 }
 
 async function getListProxies(count) {
-	const lines = await fs.readFile(__dirname + "/proxy-scraper/alive.txt", { encoding: "utf8" });
+	const lines = await fs.readFile("proxy_file.txt", { encoding: "utf8" });
 	const result = await Promise.all(
 		lines
 			.split("\n")
@@ -260,7 +261,12 @@ async function addThread(agent) {
 async function setThreads(threadCount) {
 	var agents = {};
 
-	agents = await getTorProxies(threadCount, threadIds);
+	if (proxyType === 'tor') {
+		agents = await getTorProxies(threadCount, threadIds);
+	} else {
+		agents = await getListProxies(threadCount);
+	}
+
 
 	for (var t = 0; t < threadCount; t++) {
 		threads[t + threadIds] = true;
@@ -284,7 +290,7 @@ if (!global.module) {
 
 			setThreads(Math.ceil(viewers));
 
-			interactive();
+			//interactive();
 		});
 	});
 }
@@ -302,6 +308,7 @@ function interactive() {
 		const count = Number(input) - threadIds;
 		console.log(`[Thread] count set to: ${input} | Adding: ${count}`);
 		input = "";
+
 		await setThreads(count);
 	});
 }
