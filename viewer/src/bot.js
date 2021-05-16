@@ -10,7 +10,7 @@ import kill from "tree-kill";
 import readline from "readline";
 import randomUserAgent from "random-useragent";
 
-const proxyType = 'list'; //tor
+const proxyType = 'tor'; //tor|list
 const __dirname = path.resolve(path.dirname(""));
 var torpath = "tor";
 if (process.platform == "win32") {
@@ -205,7 +205,7 @@ async function getTorProxies(count, offset = 0) {
 					// console.log(data.toString().replace("\n", ""));
 					if (data.toString().includes("100%")) {
 						console.log("[Tor] connected: " + counter);
-						const agent = new SocksProxyAgent({ host: "localhost", port });
+						const agent = new SocksProxyAgent({ protocol:"socks5h:", host: "localhost", port });
 						agent.tor = tor;
 						res(agent);
 					}
