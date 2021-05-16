@@ -175,11 +175,22 @@ async function getTorProxies(count, offset = 0) {
 		const dataDir = path.join(__dirname, "tmp", `tor${counter}`);
 		const geoip = path.join(__dirname, "tor", "geoip");
 		const geoip6 = path.join(__dirname, "tor", "geoip6");
-		let exitNode = process.argv[2] || 'us';
-		console.log('SPAWNED : ', `--SocksPort ${port} --DataDirectory ${dataDir} --ExitNodes {${exitNode}}`);
+
+		let commandTemplate = `--SocksPort ${port} --DataDirectory ${dataDir}`;
+
+		let exitNode = process.argv[2] || false;
+
+
+		if (!exitNode) {
+
+		} else {
+			commandTemplate+=` --ExitNodes {${exitNode}} --StrictNodes 1`;
+		}
+
+		console.log('SPAWNED : ', commandTemplate);
 		const tor = spawn(
 			torpath,
-			`--SocksPort ${port} --DataDirectory ${dataDir} --ExitNodes {${exitNode}} --StrictNodes 1`.split(" ")
+			commandTemplate.split(" ")
 		);
 
 		// --GeoIPFile ${geoip} --GeoIPv6File ${geoip6}
