@@ -256,7 +256,7 @@ async function addThread(agent) {
 				const ip = await (await fetch("https://api.my-ip.io/ip", { agent })).text();
 				if (ip === proxylessIp) {
 					await sleep(1000 * 1);
-					throw "[Proxy] transparent: skipping";
+					throw "[Proxy] transparent: skipping " + id;
 				}
 
 				await view({ channel: ChannelName, agent, persist: false, i: id });
