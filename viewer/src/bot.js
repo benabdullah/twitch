@@ -10,7 +10,7 @@ import kill from "tree-kill";
 import readline from "readline";
 import randomUserAgent from "random-useragent";
 
-const proxyType = 'tor';
+const proxyType = 'list'; //tor
 const __dirname = path.resolve(path.dirname(""));
 var torpath = "tor";
 if (process.platform == "win32") {
@@ -228,7 +228,7 @@ async function getListProxies(count) {
 			.slice(0, count)
 			.map(async (x) => {
 				const [host, port] = x.split(":");
-				const ip = await (await fetch(`https://api.my-ip.io/ip`, { agent, timeout })).text();
+				const ip = await (await fetch(`https://api.my-ip.io/ip`, { timeout:10000 })).text();
 				console.log(ip);
 				return new HttpsProxyAgent({ host, port, timeout });
 			})
