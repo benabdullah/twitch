@@ -260,6 +260,7 @@ async function addThread(agent) {
 				}
 
 				view({ channel: ChannelName, agent, persist: false, i: id });
+				await sleep(1300);
 			} catch (error) {
 				console.error(error);
 			}
