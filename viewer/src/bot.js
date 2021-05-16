@@ -259,13 +259,14 @@ async function addThread(agent) {
 					throw "[Proxy] transparent: skipping " + id;
 				}
 
-				await view({ channel: ChannelName, agent, persist: false, i: id });
+				view({ channel: ChannelName, agent, persist: false, i: id });
 			} catch (error) {
 				console.error(error);
 			}
 
 			try {
 				// agent.tor.kill("SIGHUP");
+				console.log('TOR RENEWED')
 				kill(agent.tor.pid, "SIGHUP");
 			} catch (e) {
 				// console.error(e);
