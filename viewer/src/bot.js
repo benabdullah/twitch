@@ -24,7 +24,7 @@ if (process.platform == "win32") {
 	console.error("warning unsupported platform");
 }
 
-const timeout = 15000;
+const timeout = 120000;
 const rl = readline.createInterface({
 	input: process.stdin,
 	output: process.stdout,
