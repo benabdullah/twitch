@@ -232,7 +232,7 @@ async function getListProxies(count) {
 				const [host, port] = x.split(":");
 				console.log('HOST !', host, 'PORT ', port);
 				let agent =  new SocksProxyAgent({ host, port, timeout });
-				console.log('AGENT TYPE', agent.type, 'HOST ', agent.host, 'PORT ', agent.port);
+				console.log('AGENT TYPE', agent);
 				return agent;
 				//return new HttpsProxyAgent({ host, port, timeout });
 			})
