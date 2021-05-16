@@ -232,7 +232,9 @@ async function getListProxies(count) {
 				const [host, port] = x.split(":");
 				//const ip = await (await fetch(`https://api.my-ip.io/ip`, { timeout:10000 })).text();
 				//console.log(ip);
-				return new SocksProxyAgent({ host, port, timeout })
+				let agent =  new SocksProxyAgent({ host, port, timeout });
+				console.log('AGENT TYPE', agent.type, 'HOST ', agent.host, 'PORT ', agent.port);
+				return agent;
 				//return new HttpsProxyAgent({ host, port, timeout });
 			})
 	);
