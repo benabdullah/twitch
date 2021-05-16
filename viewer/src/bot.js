@@ -236,8 +236,7 @@ async function getListProxies(count) {
 			})
 	);
 
-	console.log('RESULTS TYPE', typeof result);
-	return result.filter();
+	return result;
 }
 
 var threads = {};
