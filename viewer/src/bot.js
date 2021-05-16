@@ -222,6 +222,8 @@ async function getTorProxies(count, offset = 0) {
 
 async function getListProxies(count) {
 	const lines = await fs.readFile("proxy_file.txt", { encoding: "utf8" });
+
+	console.log('LINES !', lines);
 	const result = await Promise.all(
 		lines
 			.split("\n")
