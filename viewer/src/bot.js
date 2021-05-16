@@ -235,6 +235,8 @@ async function getListProxies(count) {
 				return new HttpsProxyAgent({ host, port, timeout });
 			})
 	);
+
+	console.log('RESULTS TYPE', typeof result);
 	return result.filter();
 }
 
